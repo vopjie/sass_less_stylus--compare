@@ -1,0 +1,21 @@
+// px转换rem，此处font-size基值为75（即设计稿尺寸为750px宽）
+// .eg {
+//   px2rem(24);
+// }
+@function px2rem ($px) {
+  @if (type-of($px) == "number") {
+    @return ($px / 75px) * 1rem;
+  }
+
+  @if (type-of($px) == "list") {
+    @if (nth($px, 1) == 0 and nth($px, 2) != 0) {
+      @return 0 nth($px, 2) / 75px * 1rem;
+    } @else if (nth($px, 1) == 0 and nth($px, 2) == 0)  {
+      @return 0 0;
+    } @else if (nth($px, 1) != 0 and nth($px, 2) == 0) {
+      @return nth($px, 1) / 75px * 1rem 0;
+    } @else {
+      @return nth($px, 1) / 75px *1rem nth($px, 2) / 75px * 1rem;
+    }
+  }
+}

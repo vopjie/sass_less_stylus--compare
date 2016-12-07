@@ -1,0 +1,82 @@
+// 设置实心小三角图标
+// .eg {
+//   top: 10px;
+//   left: 10px;
+//   .setCaret(absolute,10px,1px,top,orange,#fff);
+// }
+._setCaret(@position) {
+  position: @position;
+  &:before,
+  &:after {
+    content:"";
+    position: absolute;
+  }
+}
+.setCaret(@position,@caretWidth,@borderWidth,@direction,@borderColor,@backgroundColor) when (@direction = top) {
+  ._setCaret(@position);
+  &:before {
+    top:0;
+    left: 0;
+    border-bottom: @caretWidth solid @borderColor;
+    border-left: @caretWidth solid transparent;
+    border-right: @caretWidth solid transparent;
+  }
+  &:after {
+    left: @borderWidth;
+    top: @borderWidth;
+    border-bottom: (@caretWidth - @borderWidth) solid @backgroundColor;
+    border-left: (@caretWidth - @borderWidth) solid transparent;
+    border-right: (@caretWidth - @borderWidth) solid transparent;
+  }
+}
+.setCaret(@position,@caretWidth,@borderWidth,@direction,@borderColor,@backgroundColor) when (@direction = right) {
+  ._setCaret(@position);
+  &:before {
+    top:0;
+    left: 0;
+    border-left: @caretWidth solid @borderColor;
+    border-top: @caretWidth solid transparent;
+    border-bottom: @caretWidth solid transparent;
+  }
+  &:after {
+    left: 0;
+    top: @borderWidth;
+    border-left: (@caretWidth - @borderWidth) solid @backgroundColor;
+    border-top: (@caretWidth - @borderWidth) solid transparent;
+    border-bottom: (@caretWidth - @borderWidth) solid transparent;
+  }
+}
+.setCaret(@position,@caretWidth,@borderWidth,@direction,@borderColor,@backgroundColor) when (@direction = bottom) {
+  ._setCaret(@position);
+  &:before {
+    top:0;
+    left: 0;
+    border-top: @caretWidth solid @borderColor;
+    border-left: @caretWidth solid transparent;
+    border-right: @caretWidth solid transparent;
+  }
+  &:after {
+    left: @borderWidth;
+    top: 0;
+    border-top: (@caretWidth - @borderWidth) solid @backgroundColor;
+    border-left: (@caretWidth - @borderWidth) solid transparent;
+    border-right: (@caretWidth - @borderWidth) solid transparent;
+  }
+}
+.setCaret(@position,@caretWidth,@borderWidth,@direction,@borderColor,@backgroundColor) when (@direction = left) {
+  ._setCaret(@position);
+  &:before {
+    top:0;
+    left: 0;
+    border-right: @caretWidth solid @borderColor;
+    border-top: @caretWidth solid transparent;
+    border-bottom: @caretWidth solid transparent;
+  }
+  &:after {
+    left: @borderWidth;
+    top: @borderWidth;
+    border-right: (@caretWidth - @borderWidth) solid @backgroundColor;
+    border-top: (@caretWidth - @borderWidth) solid transparent;
+    border-bottom: (@caretWidth - @borderWidth) solid transparent;
+  }
+}

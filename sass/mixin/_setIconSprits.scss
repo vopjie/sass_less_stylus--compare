@@ -1,0 +1,9 @@
+// 雪碧图多屏适配
+@mixin sprites ($icons, $name) {
+  width: (image-width(sprite-file($icons, $name)));
+  height: (image-height(sprite-file($icons, $name)));
+  background-image: sprite-url($icons);
+  background-position: (sprite-position($icons, $name));
+  background-size: (($imgWidth, $imgHeight));
+  background-repeat: no-repeat;
+}

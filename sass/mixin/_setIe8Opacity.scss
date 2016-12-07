@@ -1,0 +1,12 @@
+// 设置兼容IE8的opacity
+// .eg {
+//   @include setOpacity(.5);
+// }
+
+// 优先使用postcss处理
+
+@mixin setOpacity($opacity:0.8) {
+  opacity: $opacity;
+  $opa :$opacity*100;
+  filter: alpha(opacity=$opa);
+}

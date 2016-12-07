@@ -1,0 +1,39 @@
+// 变量集中存储文件
+
+$color_black:#000;
+$color_white:#fff;
+$color_red:#e62323;
+$color_grey:#f3f3f3;
+$color_dark_grey:#d9d9d9;
+$color_orange:#fa5900;
+$color_theme:#42b983;
+$color_yellow:#ff8d43;
+$color_blue:#4babf8;
+$color_coffee:#3c2723;
+$color_green:#76c64a;
+
+.color_black {color:$color_black;}
+.color_white {color:$color_white;}
+.color_red {color:$color_red;}
+.color_grey {color:$color_grey;}
+.color_dark_grey {color:$color_dark_grey;}
+.color_orange {color:$color_orange;}
+.color_theme {color:$color_theme;}
+.color_yellow {color:$color_yellow;}
+.color_blue {color:$color_blue;}
+.color_coffee {color:$color_coffee;}
+.color_green {color:$color_green;}
+
+.bg_white {background-color:$color_white;}
+.bg_red {background-color:$color_red;}
+.bg_grey {background-color:$color_grey;}
+.bg_dark_grey {background-color:$color_dark_grey;}
+.bg_orange {background-color:$color_orange;}
+.bg_theme {background-color:$color_theme;}
+.bg_yellow {background-color:$color_yellow;}
+.bg_blue {background-color:$color_blue;}
+.bg_coffee {color:$color_coffee;}
+.bg_green {background-color:$color_green;}
+
+$gap:0.32rem;
+$input_h:1.28rem;

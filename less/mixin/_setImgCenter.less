@@ -1,0 +1,15 @@
+// 设置 img 上下左右居中，设置于img父级元素上，父级元素不可使用float
+// .eg {
+//   .setImgCenter(100px,100px);
+// }
+.setImgCenter (@width,@height) {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width:@width;
+  height:@height;
+  img {
+    max-width: @width;
+    max-height: @height;
+  }
+}

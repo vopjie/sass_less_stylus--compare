@@ -1,0 +1,12 @@
+// 设置文本溢出显示省略号...
+// .eg {
+//   @include setNowrap();
+// }
+
+@mixin setNowrap($width:98%) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: $width;
+  display:inline-block;
+}

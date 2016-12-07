@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+@import "./mixin/all";
+
+@import "mixin/retina-sprites";
+$sprites: sprite-map("retina-version/sprites/*.png");
+$sprites2x: sprite-map("retina-version/sprites-retina/*.png");
+// 手动设置类名,参数带true,将生成hover样式
+.icon-calendar {
+  @include retina-sprite(calendar,true);
+}
+
+$icons: sprite-map("./icon/*.png");
+.icon-email {
+  @include setBackIcon($icons, email);
+}

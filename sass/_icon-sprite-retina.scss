@@ -1,0 +1,8 @@
+// H5视网膜合图
+@import "mixin/retina-sprites";
+$sprites: sprite-map("retina-version/sprites/*.png");
+$sprites2x: sprite-map("retina-version/sprites-retina/*.png");
+// 手动设置类名,参数带true,将生成hover样式
+// .icon-calendar {
+//   @include retina-sprite(calendar,true);
+// }

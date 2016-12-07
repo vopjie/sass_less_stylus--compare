@@ -1,0 +1,7 @@
+// px2rem
+// .eg {
+//   @include px2rem(font-size,75);
+// }
+@mixin px2rem($name,$px) {
+  #{$name}: ($px / 75px) * 1rem;
+}

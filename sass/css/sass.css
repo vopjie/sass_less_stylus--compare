@@ -1,0 +1,31 @@
+.icon-calendar {
+  height: 0.2rem;
+  width: 0.2rem;
+  background-image: url('../../images/retina-version/sprites-s0b67aeacbd.png');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.icon-calendar:hover {
+  background-position: 0 -0.2rem;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .icon-calendar {
+    background-image: url('../../images/retina-version/sprites-retina-s6183e8aeff.png');
+    background-position: 0 0;
+    background-size: 0.2rem auto;
+  }
+
+  .icon-calendar:hover {
+    background-position: 0 -0.2rem;
+  }
+}
+
+.icon-email {
+  width: 1.73333rem;
+  height: 1.73333rem;
+  background-image: url('../../images/icon/email.png?1481012419');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,25 @@
+// 设置 rgba 或 hexa格式颜色兼容IE8
+// .eg {
+//   @include setRgba(background-color,0,0,0,.4);
+//   @include setHexa(border-color,#169fe6,.4);
+// }
+
+@mixin setRgba($name,$r:0,$g:0,$b:0,$a:.8) {
+  $color-rgba : rgba($r,$g,$b,$a);
+  $color-rgb : rgb($r,$g,$b);
+  $AA :alpha($color-rgba);
+  $RR : red($color-rgba);
+  $GG : green($color-rgba);
+  $BB : blue($color-rgba);
+  #{$name}:$color-rgba;
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#{ie-hex-str($color-rgba)}',endcolorstr='#{ie-hex-str($color-rgba)}');
+}
+
+@mixin setHexa($name,$color:#000,$a:.8) {
+  $RR : red($color);
+  $GG : green($color);
+  $BB : blue($color);
+  $color-rgba : rgba($RR,$GG,$BB,$a);
+  #{$name}:$color-rgba;
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#{ie-hex-str($color-rgba)}',endcolorstr='#{ie-hex-str($color-rgba)}');
+}

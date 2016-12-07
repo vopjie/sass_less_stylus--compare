@@ -1,0 +1,16 @@
+// 设置盒子内图片上下左右居中
+// .eg {
+//   @include setImgCenter(100px,100px);
+// }
+
+@mixin setImgCenter ($width,$height) {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  width:$width;
+  height:$height;
+  img {
+    max-width: $width;
+    max-height: $height;
+  }
+}

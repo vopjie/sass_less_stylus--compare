@@ -1,256 +1,499 @@
 # sass_less_stylus--compare
-github: https://github.com/vopjie/sass_less_stylus--compare
 
-### 为什么less更流行？
-- 并不是less最优秀，萝卜青菜各有所爱。
+# CSS预处理器
+
+### 为什么 less 更流行？
 - Less中文网
 - Bootstrap使用并推荐Less
-- Less提供不用预先编译的浏览器端用法（不建议）
+- Less提供不用预先编译的浏览器端用法
 
-## 对比
-- #### 变量
- -
+### 简单介绍下 stylus [ˈstaɪləs]
+> 来自于Node.js社区，主要用来给Node项目进行CSS预处理支持
+，Stylus官网：http://learnboost.github.com/stylus
 
-## sass
-## stylus
+- 主要特色：用缩进代替冒号（:）分号（;）大括号（{}）作为分隔符来区分代码块；
+- 缺点：难以阅读
+- 现状：人气较低
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+``` stylus
+// stylus
+font-size = 14px
+body
+  font font-size Arial, sans-seri
+#logo
+  position: absolute
+  top: 50%
+  left: 50%
+  width: w = 150px
+  height: h = 80px
+  margin-left: -(w / 2)
+  margin-top: -(h / 2)
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-Package Control Messages
-========================
+### 对比 less 与 scss
+> Sass有两套语法规则：一个是和stylus类似，用缩进作为分隔符来区分代码块的；另一套规则和CSS一样采用了大括号（｛｝）作为分隔符，命名为SCSS。
 
-Markdown Preview
-----------------
+- #### 变量
 
-  Sublime Text 2/3 Markdown Preview
-  =================================
+``` Less
+// Less
+@color-green: #4D926F;
 
-  Preview and build your markdown files quickly in your web browser from sublime text 2/3.
+#header {
+  color: @color-green;
+}
 
-  You can use builtin [python-markdown][10] parser or use the [github markdown API][5] for the conversion.
+```
 
-  **NOTE:** If you choose the GitHub API for conversion (set parser: github in your settings), your code will be sent through https to github for live conversion. You'll have [Github flavored markdown][6], syntax highlighting and EMOJI support for free :heart: :octocat: :gift:. If you make more than 60 calls a day, be sure to set your GitHub API key in the settings :). You can also get most of this in the default Markdown parser with by enabling certain extensions; see "[Parsing Github Flavored Markdown](#parsing-github-flavored-markdown-)"" below for more information.
+``` scss
+// Sass
+$color-green: #4D926F;
 
-  **LINUX users:** If you want to use GitHub API for conversion, you'll need to have a custom Python install that includes python-ssl as its not built in the Sublime Text 2 Linux package. see [@dusteye comment][8]. If you use a custom window manager, also be sure to set a `BROWSER` environment variable. see [@PPvG comments][9]
+#header {
+ color: $color-green;
+}
 
-  ## Features :
+```
 
-   - Markdown preview using the [Python-markdown][10] or the Github API just choose select the build commands.
-   - Syntax highlighting via Pygments. See "[Configuring Pygments](#configuring-pygments)" for more info.
-   - Build markdown file using Sublime Text build system. The build parser are config via the `"parser"` config.
-   - Browser preview auto reload on save if you have the [ST2 LiveReload plugin][7] installed.
-   - Builtin parser : supports `abbr`, `attr_list`, `def_list`, `fenced_code`, `footnotes`, `tables`, `smart_strong`, `smarty`,  `wikilinks`, `meta`, `sane_lists`, `codehilite`, `nl2br`, and `toc` markdown extensions.
-   - CSS search path for local and build-in CSS files (always enabled) and/or CSS overriding if you need
-   - YAML support thanks to @tommi
-   - Clipboard selection and copy to clipboard thanks to @hexatrope
-   - MathJax support : \\\\(\frac{\pi}{2}\\\\) thanks to @bps10
-   - HTML template customisation thanks to @hozaka
-   - Embed images as base64 (see [settings][settings] file for more info)
-   - Strip out multimarkdown critic marks from either Githubs or Python Markdown input source (see [settings][settings] file for more info)
-   - 3rd party extensions for the Python Markdown parser:
+- #### 混合（mixin）
+> 带参数的代码片段
 
-      | Extension | Documentation |
-      |-----------|---------------|
-      | magiclink | Find and convert HTML links and email address to links ([MagicLink Documentation](http://facelessuser.github.io/pymdown-extensions/extensions/magiclink/)). |
-      | delete | Surround inline text with `~~strike through~~` to get del tags ~~strike through~~. |
-      | insert | Surround inline text with `^^underlined^^` to get ins tags <ins>underlined</ins>. |
-      | tasklist | Github Flavored Markdown tasklists ([Tasklist Documentation](http://facelessuser.github.io/pymdown-extensions/extensions/tasklist/)). |
-      | githubemoji | Support for Github Flavored Markdown emojis ([GithubEmoji Documentation](http://facelessuser.github.io/pymdown-extensions/extensions/githubemoji/)). |
-      | headeranchor | Github Flavored Markdown style header anchors ([HeaderAnchor Documentation](http://facelessuser.github.io/pymdown-extensions/extensions/headeranchor/)). |
-      | github | A convenience extension to add: `magiclink`, `delete`, `tasklist`, `githubemoji`, `headeranchor`, `superfences`, and `nl2br` to parse and display Markdown in a github-ish way.  It is recommed to pair `github` with `extra` and `codehilite` (with language guessing off) to parse close to github's way.  Be aware of what extensions `github` loads, because you should not load extensions more than once. |
-      | progressbar | Create progress bars ([ProgressBar Documentation](http://facelessuser.github.io/pymdown-extensions/extensions/progressbar/)). |
-      | superfences | Allow fenced blocks to be nested under lists, blockquotes, etc. and add special UML diagram blocks ([SuperFences Documentation](http://facelessuser.github.io/pymdown-extensions/extensions/superfences/)). |
+``` less
+// Less
+// 设置文本溢出显示省略号...
+.setNowrap(@width:98%) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: @width;
+  display:inline-block;
+}
+.eg {
+  .setNowrap();
+}
+```
 
-  ## Installation :
+``` scss
+// Sass
+// 设置文本溢出显示省略号...
+@mixin setNowrap($width:98%) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: $width;
+  display:inline-block;
+}
+.eg {
+  @include setNowrap();
+}
+```
 
-  ### Using [Package Control][3] (*Recommended*)
+- #### 嵌套规则
 
-  For all Sublime Text 2/3 users we recommend install via [Package Control][3].
+``` less
+// Less
+#header {
+  h1 {
+    font-size: 26px;
+    // & 符号表示引用父级
+    &.active {
+      color: red;
+    }
+  }
+  p { font-size: 12px;
+    a { text-decoration: none;
+      &:hover { border-width: 1px; }
+    }
+  }
+}
+```
 
-  1. [Install][11] Package Control if you haven't yet.
-  2. Use <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>P</kbd> then `Package Control: Install Package`
-  3. Look for `Markdown Preview` and install it.
+``` scss
+// Sass
+// Less 不支持这种嵌套
+.eg {
+  font: {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
 
-  ### Manual Install
+// @at-root 的内联选择器模式，将不会让你的选择器发生任何的嵌套，直接移除了父选择，避免嵌套过深
+// Less 不支持@at-root
+.foo {
+  @at-root .bar {
+    color:gray;
+  }
+}
+.bar {
+  color: gray;
+}
+```
 
-  1. Click the `Preferences > Browse Packages…` menu
-  2. Browse up a folder and then into the `Installed Packages/` folder
-  3. Download [zip package][12] rename it to `Markdown Preview.sublime-package` and copy it into the `Installed Packages/` directory
-  4. Restart Sublime Text
+- #### 注释
 
-  ## Usage :
+``` less
+// Less & Sass
+// less和sass都支持单双斜杠两种注释,但是双斜线的注释在编译成 CSS 的时候会自动过滤掉
 
-  ### To preview :
+/* Hello, I'm a CSS-style comment */
+.class { color: black }
 
-   - optionally select some of your markdown for conversion
-   - use <kbd>cmd</kbd>+<kbd>shift</kbd>+<kbd>P</kbd> then `Markdown Preview` to show the follow commands (you will be prompted to select which parser you prefer):
-  	- Markdown Preview: Preview in Browser
-  	- Markdown Preview: Export HTML in Sublime Text
-  	- Markdown Preview: Copy to Clipboard
-  	- Markdown Preview: Open Markdown Cheat sheet
-   - or bind some key in your user key binding, using a line like this one:
-     `{ "keys": ["alt+m"], "command": "markdown_preview", "args": {"target": "browser", "parser":"markdown"} },` for a specific parser and target or `{ "keys": ["alt+m"], "command": "markdown_preview_select", "args": {"target": "browser"} },` to bring up the quick panel to select enabled parsers for a given target.
-   - once converted a first time, the output HTML will be updated on each file save (with LiveReload plugin)
+// Hi, I'm a silent comment, I won't show up in your CSS
+.class { color: white }
+```
 
-  ### Enabling Other External Markdown Parsers :
+- #### 函数 & 运算符
+> 运算提供了加，减，乘，除以及属性值和颜色的运算
 
-  External parser commands and arguments should first be mapped to a name.  The path to the binary should be first, followed by flags etc.
+``` less
+// Less
+// Color 函数
+lighten(@color, 10%);     // return a color which is 10% *lighter* than @color
+darken(@color, 10%);      // return a color which is 10% *darker* than @color
+...
+// Math 函数
+round(1.67); // returns `2`
+ceil(2.4);   // returns `3`
+floor(2.6);  // returns `2`
+// percentage 函数
+percentage(0.5); // returns `50%`
 
-  ```js
-      "markdown_binary_map": {
-          "multimarkdown": ["/usr/local/bin/multimarkdown"]
-      },
-  ```
+@the-border: 1px;
+@base-color: #111;
+@red:        #842210;
+#header {
+  color: @base-color * 3;
+  border-left: @the-border;
+  border-right: @the-border * 2;
+}
+#footer {
+  color: @base-color + #003300;
+  border-color: desaturate(@red, 10%); // Color 函数之一：降低10%颜色饱和度
+}
+// less自定义函数
+// 需要使用插件（非官方插件）：less-plugin-functions才支持自定义函数
 
-  Then the name can be placed in `enabled_parsers` to enable use of the new parser.
+```
+``` sass
+// sass
+// sass 运算符和less类似，只是函数命名会有不同，结合compass，提供了更多的函数运算符
+// sass的自定义函数示例：见 /sass/function/
 
-  ```js
-      "enabled_parsers": ["markdown", "github", "multimarkdown"],
-  ```
+```
 
-  ### To build :
+- #### 作用域
 
-   - Just use <kbd>ctrl</kbd>+<kbd>B</kbd> (Windows/Linux) or <kbd>cmd</kbd>+<kbd>B</kbd> (Mac) to build current file.
+``` less
+// Less
+@var: red;
 
-  ### To config :
+#page {
+  @var: white;
+  #header {
+    color: @var; // white
+  }
+}
 
-  Using Sublime Text menu: `Preferences`->`Package Settings`->`Markdown Preview`
+#footer {
+  color: @var; // red  
+}
+```
+``` sass
+// sass
+// sass和less在作用域上用法一样
+```
 
-  - `Settings - User` is where you change your settings for Markdown Preview.
-  - `Settings - Default` is a good reference with detailed descriptions for each setting.
+- #### Importing
 
-  ### Configuring Pygments
-  If you add the codehilite extension manually in the enabled extensions, you can override some of the default settings.
+``` less
+// Less
+@import "lib.less";
+@import "lib";
 
-  * Turn language guessing *on* or *off* (*on* will highlight fenced blocks even if you don't specify a language)  `codehilite(guess_lang=False)` (True|False).
-  * Show line numbers: `codehilite(linenums=True)` (True|False).
-  * Change the higlight theme: `codehilite(pygments_style=emacs)`.
-  * Inline the CSS: `codehilite(noclasses=True)` (True|False).
-  * Use multiple: `codehilite(linenums=True, pygments_style-emacs)`.
+// 如果你想导入一个CSS文件而且不想LESS对它进行处理，只需要使用.css后缀就可以:
+@import "lib.css";
+```
+``` sass
+// sass
+// sass和less在Importing上用法一样
+```
 
-  See [codehilte page](https://pythonhosted.org/Markdown/extensions/code_hilite.html) for more info.
+- #### 字符串插值
 
-  ### Meta Data Support
-  When the `meta` extension is enabled (https://pythonhosted.org/Markdown/extensions/meta_data.html), the results will be written to the HTML head in the form `<meta name="key" content="value1,value2">`.  `title` is the one exception, and its content will be written to the title tag in the HTML head.
+``` less
+// Less
+@base-url: "http://assets.fnord.com";
+.eg {
+  background-image: url("@{base-url}/images/bg.png");
+}
+```
+``` sass
+// sass
+$base-url: "http://assets.fnord.com";
+.eg {
+  background-image: url("#{base-url}/images/bg.png");
+}
+```
 
-  ### YAML Frontmatter Support
-  YAML frontmatter can be stripped out and read when `strip_yaml_front_matter` is set to  `true` in the settings file.  In general the, the fronmatter is handled the same as [meta data](#meta-data-support), but if both exist in a file, the YAML keys will override the `meta` extension keys.  There are a few special keys names that won't be handled as html meta data.
+- #### 避免编译
 
-  #### Special YAML Key Names
-  Yaml frontmatter has a few special key names that are used that will not be handled as meta data:
+``` less
+// Less
+// 有时候我们需要输出一些不正确的CSS语法或者使用一些 LESS不认识的专有语法.
+// 使用 ~
+.setRgba(@r:0,@g:0,@b:0,@a:0.8) {
+  @color-rgba : rgba(@r,@g,@b,@a);
+  @AA :alpha(@color-rgba);
+  @RR : red(@color-rgba);
+  @GG : green(@color-rgba);
+  @BB : blue(@color-rgba);
+  background-color: @color-rgba;
+  @argb : argb(@color-rgba);
+  filter: ~"progid:DXImageTransform.Microsoft.gradient(startcolorstr=@{argb},endcolorstr=@{argb})";
+}
+.eg {
+  .setRgba();
+}
+```
+``` sass
+// sass
+// sass 不需要用~处理
+@mixin setRgba($name,$r:0,$g:0,$b:0,$a:.8) {
+  $color-rgba : rgba($r,$g,$b,$a);
+  $color-rgb : rgb($r,$g,$b);
+  $AA :alpha($color-rgba);
+  $RR : red($color-rgba);
+  $GG : green($color-rgba);
+  $BB : blue($color-rgba);
+  #{$name}:$color-rgba;
+  filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#{ie-hex-str($color-rgba)}',endcolorstr='#{ie-hex-str($color-rgba)}');
+}
+```
 
-  - **basepath**: An absolute path to configure the relative paths for images etc. (for when the markdown is supposed to reference images in a different location.)
-  - **references**: Can take a file path or an array of file paths for separate markdown files containing references, footnotes, etc.  Can be an absolute path or relative path.  Relative paths first use the source file's directory, and if the file cannot be found, it will use the `basepath` setting.
-  - **destination**: This is an absolute file path or relative file path for when the markdown is saved to html via the build command or the `Save to HTML` command.  Relative paths first use the source file's directory, and if the file cannot be found, it will use the `basepath` setting.
-  - **settings**: This is a dictionary where you can override settings that are in the settings file.
+- #### JavaScript 表达式
 
-  #### Example
-  ```yaml
-  ---
-      # Builtin values
-      references:
-          - references.md
-          - abbreviations.md
-          - footnotes.md
+``` less
+// Less
+// JavaScript 表达式也可以在.less 文件中使用. 可以通过反引号的方式使用:
+// 也可以访问JavaScript环境:
+@height: `document.body.clientHeight`;
+```
+``` sass
+// sass
+// sass 不支持JavaScript 表达式
+```
 
-      destination: destination.html
+- #### 继承
 
-      # Meta Data
-      title: Test Page
-      author:
-          - John Doe
-          - Jane Doe
+``` less
+// Less
+.parentClass{  
+  color:red;  
+}  
+.subClassOne{  
+  &:extend(.parentClass);  
+}
+// or  
+.parentClass{  
+  span{  
+    color:red  
+  }  
+}  
+.subClassOne{  
+  &:extend(.parentClass span);  
+}
+```
 
-      # Settings overrides
-      settings:
-          enabled_extensions:
-          - extra
-          - github
-          - toc
-          - headerid
-          - smarty(smart_quotes=False) # smart quotes interferes with attr_list
-          - meta
-          - wikilinks
-          - admonition
-          - codehilite(guess_lang=False,pygments_style=github)
-  ---
-  ```
+``` sass
+// sass
+// sass 占位符与继承
+// 公用的.message也会被编译
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
 
-  ### Parsing Github Flavored Markdown :
-  Github Flavored Mardown (GFM) is a very popular markdown.  Markdown Preview can actually handle them in a couple of ways: online and offline.
+.success {
+  @extend .message;
+  border-color: green;
+}
 
-  #### Online :
-  Parsing GFM using the online method requires using the Github API as the parser.  It may also require setting `github_mode` to `gfm` to get things like tasklists to render properly. You can set your API key in the settings as follows:
+// 公用的%icon不会被编译
+%icon {
+  transition: background-color ease .2s;
+  margin: 0 .5em;
+}
 
-  ```js
-      "github_oauth_token": "secret"
-  ```
+.error-icon {
+  @extend %icon;
+}
+.info-icon {
+  @extend %icon;
+}
+```
 
-  #### Offline :
-  By default almost all extensions are enabled to help with the github feel, but there are some tweaks needed to get the full experience.
+- #### 命名空间
+> 定义一些属性集之后可以重复使用
 
-  GFM does not auto guess language in fenced blocks, but Markdown Preview does this by default.  You can fix this in one of two ways:
+``` less
+// Less
+#bundle {
+  .button () {
+    display: block;
+    border: 1px solid black;
+    background-color: grey;
+    &:hover { background-color: white }
+  }
+  .tab { ... }
+  .citation { ... }
+}
 
-  1. Disable auto language guessing in the settings file `"guess_language": false,`
-  2. Or if you are manually defining extensions: `"enabled_extensions": ["codehilite(guess_lang=False,pygments_style=github)"]`
+#header a {
+  color: orange;
+  #bundle > .button;
+}
+```
+``` sass
+// sass
+// sass 没有命名空间一说
+```
 
+- #### if/else
+> 为了尽可能地保留CSS的可声明性，LESS通过导引混合而非if/else语句来实现条件判断，因为前者已在@media query特性中被定义。
 
-  As mentioned earlier, almost all extensions are enabled by default, but as a reference, the minimum extensions that should be enabled are listed below:
+``` less
+// Less
+.myMixin (@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.myMixin (@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.myMixin (@a) {
+  color: @a;
+}
+// 使用 1
+.class1 { .myMixin(#ddd) }
+.class2 { .myMixin(#555) }
+// 使用 2
+// 见 /less/mixin/setAnimation.less
 
-  ```javascript
-  	"enabled_extensions": [
-  		"extra",
-  		"github",
-  		"codehilite(guess_lang=False,pygments_style=github)"
-  	]
-  ```
+```
+``` sass
+// sass
+@mixin myMixin($a) {
+  @if lightness($a) >= 50% {
+    background-color: black;
+  } @else {
+    background-color: white;
+  }
+}
+```
 
-  This may be further enhanced in the future.
+- #### for
 
+``` less
+// Less
+.for(@i) when (@i <11){
+  @name:(@i*5);
+  .mt@{name} {margin-top: @i * 5px;}
+  .pt@{name} {padding-top: @i * 5px;}
+  .for((@i+1))
+}
+.for(1);
+```
+``` sass
+// sass
+// 循环生成若干 margin, padding 通用类名 方面html内调用
+//
+@for $i from 1 through 10 {
+  .mt#{$i * 5} {margin-top: $i * 5px;}
+  .pt#{$i * 5} {padding-top: $i * 5px;}
+}
+// or
+$i: 50;
+@while $i >= 0 {
+  .mt#{$i} {margin-top: $i * 1px;}
+  .pt#{$i} {padding-top: $i * 1px;}
+  $i: $i - 5;
+}
+```
 
-  ## Support :
+### sass 的其他优点
+// sass 的使用依赖于ruby,示例是结合了gulp
 
-  - Any bugs about Markdown Preview please feel free to report [here][issue].
-  - And you are welcome to fork and submit pullrequests.
+1，下载安装nodejs
 
+2，命令行安装ruby:
 
-  ## License :
+window:
+先下载安装
+https://rubyinstaller.org/
+``` bash
+gem install ruby
+```
 
-  The code is available at github [project][home] under [MIT licence][4].
+mac:
+参考链接：http://www.cnblogs.com/daguo/p/4097263.html
+``` bash
+$ curl -L https://get.rvm.io | bash -s stable
 
-   [home]: https://github.com/revolunet/sublimetext-markdown-preview
-   [3]: https://packagecontrol.io/
-   [4]: http://revolunet.mit-license.org
-   [5]: https://developer.github.com/v3/markdown/
-   [6]: https://help.github.com/articles/github-flavored-markdown/
-   [7]: https://github.com/dz0ny/LiveReload-sublimetext2
-   [8]: https://github.com/revolunet/sublimetext-markdown-preview/issues/27#issuecomment-11772098
-   [9]: https://github.com/revolunet/sublimetext-markdown-preview/issues/78#issuecomment-15644727
-   [10]: https://github.com/waylan/Python-Markdown
-   [11]: https://packagecontrol.io/installation
-   [12]: https://github.com/revolunet/sublimetext-markdown-preview/archive/master.zip
-   [issue]: https://github.com/revolunet/sublimetext-markdown-preview/issues
-   [settings]: https://github.com/revolunet/sublimetext-markdown-preview/blob/master/MarkdownPreview.sublime-settings
+$ source ~/.rvm/scripts/rvm
+
+$ rvm -v
+
+$ rvm list known
+
+$ rvm install 2.3
+
+// 如果在这一步遇到下面的报错，试试通过终端重新安装的Xcode命令行工具
+// xcrun: error: invalid active developer path
+// $ xcode-select --install
+
+$ rvm list
+
+$ rvm 2.3 --default
+
+$ ruby -v
+
+$ gem -v
+
+2，命令行安装ruby:
+$ gem install ruby
+
+3，命令行安装compass
+$ gem install compass
+
+```
+
+3，命令行安装compass
+``` bash
+gem install compass
+```
+
+3，如需引用normalize请安装normalize.css
+命令行安装compass-normalize
+``` bash
+gem install compass-normalize
+```
+
+4，安装插件
+``` bash
+npm i
+```
+
+5，运行开启gulp自动化
+``` bash
+gulp
+```
+
+// 这里说一下其中一个很重要的点：精灵图合成
+
+// 结合compass,自动将一个文件夹中的所有icon合成精灵图,见示例
+
+### bootstrap 与 less
+### 扩展：css后处理器
+### 扩展：iconfont

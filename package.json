@@ -1,0 +1,25 @@
+{
+  "name": "plugins",
+  "description": "gulp",
+  "version": "0.1.0",
+  "author": "",
+  "devDependencies": {
+    "browser-sync": "*",
+    "gulp": "*",
+    "gulp-cache": "*",
+    "gulp-compass": "",
+    "gulp-concat": "*",
+    "gulp-csslint": "*",
+    "gulp-minify-css": "*",
+    "gulp-uglify": "*",
+    "gulp-load-plugins": "*",
+    "gulp-postcss": "*",
+    "postcss-px2rem": "*",
+    "gulp-watch": "*",
+    "autoprefixer": "*",
+    "css-mqpacker": "*",
+    "gulp-less": "*",
+    "less-plugin-functions": "*",
+    "csswring": "*"
+  }
+}

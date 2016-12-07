@@ -1,0 +1,13 @@
+// 设置背景图标
+//  $icons: sprite-map("./icon/*.png");
+// .eg {
+//   @include setBackIcon($icons, email);
+// }
+@import "../function/_px2rem.scss";
+@mixin setBackIcon ($icons, $name) {
+  width: px2rem(image-width(sprite-file($icons, $name)));
+  height: px2rem(image-height(sprite-file($icons, $name)));
+  background-image: image-url(sprite-file($icons, $name));
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

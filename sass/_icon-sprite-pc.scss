@@ -1,0 +1,23 @@
+// PC网站合图
+// 布局方式：vertical、horizontal、diagonal和smart。默认排列方式是vertical。
+// $icon-layout:smart;
+// 设置smart后，设置间距将失效
+//
+// config
+//
+// 设置间距
+$icon-spacing: 1px;
+// 输出宽高
+$icon-sprite-dimensions:"true";
+
+// 导入compass提供的mixin
+@import "compass/utilities/sprites";
+// 导入图标
+@import "icon/*.png";
+// 输入所有图标css
+@include all-icon-sprites();
+
+// or 手动设置类名
+// .icon-phone {
+//  @include icon-sprite(phone);
+// }

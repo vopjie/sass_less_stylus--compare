@@ -1,0 +1,13 @@
+* {
+  // 统一盒模型
+  box-sizing:border-box;
+  // 取消-webkit-内核浏览器点击阴影
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  // 让-webkit-内核浏览器支持11px字体
+  -webkit-text-size-adjust:none;
+  // 取消按钮等激活状态下轮廓
+  outline:0;
+}
+
+// 取消-webkit-内核浏览器ui渲染
+input[type=text],input[type=tel],select ,textarea{-webkit-appearance:none;}
