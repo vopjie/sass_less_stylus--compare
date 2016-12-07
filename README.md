@@ -3,6 +3,7 @@
 # CSS预处理器
 
 ### 为什么 less 更流行？
+- less语法比保持和css一样
 - Less中文网
 - Bootstrap使用并推荐Less
 - Less提供不用预先编译的浏览器端用法

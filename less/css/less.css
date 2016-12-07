@@ -19,3 +19,11 @@ p {
   -webkit-transition: all .2s linear 0s;
   transition: all .2s linear 0s;
 }
+
+.icon-email {
+  width: 1.733333rem;
+  height: 1.733333rem;
+  background-image: url("../../images/icon/email.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

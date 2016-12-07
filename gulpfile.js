@@ -28,7 +28,7 @@ gulp.task('less', function() {
     // mqpacker,
     // csswring
   ];
-  gulp.src('less/*.less')
+  gulp.src('less/style/*.less')
     .pipe(less())
     .pipe(postcss(processors))
     .pipe(gulp.dest('less/css/'));
@@ -43,11 +43,11 @@ gulp.task('sass', function() {
     // mqpacker,
     // csswring
   ];
-  gulp.src('sass/*.scss')
+  gulp.src('sass/style/*.scss')
     .pipe(plugins.compass({
       config_file: './config.rb',
-      css: 'sass/css',
-      sass: 'sass'
+      css: 'sass/css/',
+      sass: 'sass/style/'
     }))
     .pipe(postcss(processors))
     // .pipe(plugins.minifyCss())
@@ -61,6 +61,6 @@ gulp.task('sass', function() {
 gulp.task('default', ['watch', 'less', 'sass']);
 
 gulp.task('watch', function() {
-  gulp.watch('less/*.less', ['less']);
-  gulp.watch('sass/*.scss', ['sass']);
+  gulp.watch('less/style/*.less', ['less']);
+  gulp.watch('sass/style/*.scss', ['sass']);
 });

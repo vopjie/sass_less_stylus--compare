@@ -1,0 +1,11 @@
+// 设置背景图标
+// .eg {
+//   .setBackIcon('@{iconPath}/email.png');
+// }
+.setBackIcon (@icon) {
+  width: image-width("@{icon}");
+  height: image-height("@{icon}");
+  background-image:url("@{icon}");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
