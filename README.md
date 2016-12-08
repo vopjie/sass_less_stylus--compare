@@ -12,7 +12,7 @@
 > 来自于Node.js社区，主要用来给Node项目进行CSS预处理支持
 ，Stylus官网：http://learnboost.github.com/stylus
 
-- 主要特色：用缩进代替冒号（:）分号（;）大括号（{}）作为分隔符来区分代码块；
+- 主要特色：用缩进代替分号（;）大括号（{}）作为分隔符来区分代码块；
 - 缺点：难以阅读
 - 现状：人气较低
 
@@ -219,6 +219,21 @@ percentage(0.5); // returns `50%`
 ``` sass
 // sass
 // sass和less在Importing上用法一样
+
+// sass中，在引用下划线开头的文件如：_example.sass时，不需要写下划线，less不支持;
+// @import "path/example";
+
+// 备注：
+// 以下划线开头的文件如：_example.sass
+// 不会以新文件的形式被编译出来
+//
+// 例如：
+// 在less中，如果 style/ 目录下有 _example1.less 和 example2.less
+// 最终在 css/ 输出目录下会有 _example1.cssh 和 example2.css
+//
+// 但是在sass中，如果 style/ 目录下有 _example1.less 和 example2.less
+// 最终在 css/ 输出目录下只有 example2.css
+// _example1.less使用的样式会被编译，但是不会被编译成新的文件example1.css
 ```
 
 - #### 字符串插值
@@ -279,6 +294,9 @@ $base-url: "http://assets.fnord.com";
 // Less
 // JavaScript 表达式也可以在.less 文件中使用. 可以通过反引号的方式使用:
 // 也可以访问JavaScript环境:
+// 但是只能在客户端使用
+// http://lesscss.org/#-client-side-usage
+// 即：html直接引用less文件和less.js，在客户端编译
 @height: `document.body.clientHeight`;
 ```
 ``` sass
@@ -496,5 +514,6 @@ gulp
 // 结合compass,自动将一个文件夹中的所有icon合成精灵图,见示例
 
 ### bootstrap 与 less
+### weui 与 less
 ### 扩展：css后处理器
-### 扩展：iconfont
+### 扩展：阿里巴巴iconfont
